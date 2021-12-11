@@ -420,7 +420,7 @@ erpnext.bom.BomController = class BomController extends erpnext.TransactionContr
 	conversion_factor(doc, cdt, cdn) {
 		if (frappe.meta.get_docfield(cdt, "stock_qty", cdn)) {
 			var item = frappe.get_doc(cdt, cdn);
-			frappe.model.round_floats_in(item, ["qty", "conversion_factor"]);
+			frappe.model.round_floats_in(item, ["qty"]);
 			item.stock_qty = flt(item.qty * item.conversion_factor, precision("stock_qty", item));
 			refresh_field("stock_qty", item.name, item.parentfield);
 			this.toggle_conversion_factor(item);
